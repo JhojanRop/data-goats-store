@@ -72,23 +72,23 @@ export default function Header() {
                   <Bars3Icon aria-hidden="true" className="size-6" />
                 </button>
 
-                <a href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
+                <Link href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
                   <span className="sr-only">Search</span>
                   <MagnifyingGlassIcon aria-hidden="true" className="size-6" />
-                </a>
+                </Link>
               </div>
 
               {/* Navigation */}
               <div className="hidden lg:block lg:flex-1 lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   {navigation.pages.map((page) => (
-                    <a
+                    <Link
                       key={page.name}
                       href={page.href}
                       className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
                       {page.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -106,27 +106,27 @@ export default function Header() {
 
               <div className="flex flex-1 items-center justify-end">
                 {/* Search */}
-                <a href="#" className="ml-6 hidden p-2 text-gray-400 hover:text-gray-500 lg:block">
+                <Link href="#" className="ml-6 hidden p-2 text-gray-400 hover:text-gray-500 lg:block">
                   <span className="sr-only">Search</span>
                   <MagnifyingGlassIcon aria-hidden="true" className="size-6" />
-                </a>
+                </Link>
 
                 {/* Account */}
-                <a href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:ml-4">
+                <Link href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:ml-4">
                   <span className="sr-only">Account</span>
                   <UserIcon aria-hidden="true" className="size-6" />
-                </a>
+                </Link>
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <Link href="#" className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
                       aria-hidden="true"
                       className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
                     <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
