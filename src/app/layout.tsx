@@ -1,9 +1,7 @@
-'use client'
-
-import { Poppins } from "next/font/google";
 import "./globals.css";
-import { usePathname } from "next/navigation";
-import Header from "@/components/Header";
+import { Metadata } from "next";
+import { Poppins } from "next/font/google";
+import ClientLayout from "./ClientLayout";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -11,18 +9,11 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+export const metadata: Metadata = {
+  title: "Data Goats Store",
+  description: "A store for data goats",
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
-  const pathname = usePathname()
-  const hiddenHeaderRoutes = ['/login', '/register', '/admin']
-  const showHeader = !hiddenHeaderRoutes.includes(pathname)
-
-
-  return (
-    <html lang="en">
-      <body className={`${poppins.variable} antialiased`}>
-        {showHeader && <Header />}
-        <main className="mx-auto mt-4 max-w-7xl px-4 sm:px-6 lg:px-8">{children}</main>
-      </body>
-    </html>
-  );
+  return <ClientLayout font={poppins}>{children}</ClientLayout>;
 }
