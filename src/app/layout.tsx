@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
+'use client'
+
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { usePathname } from "next/navigation";
+import Header from "@/components/Header";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -8,20 +11,17 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export const metadata: Metadata = {
-  title: "Data GOATS Store",
-  description: "Generated usign Next.js",
-};
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+  const pathname = usePathname()
+  const hiddenHeaderRoutes = ['/login', '/register', '/admin']
+  const showHeader = !hiddenHeaderRoutes.includes(pathname)
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-        {children}
+        {showHeader && <Header />}
+        <main className="mx-auto mt-4 max-w-7xl px-4 sm:px-6 lg:px-8">{children}</main>
       </body>
     </html>
   );

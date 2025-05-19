@@ -1,10 +1,6 @@
 'use client'
-import Header from '@/components/Header'
-
 export default function Home() {
   return (
-    <div className="bg-white">
-      <Header />
-    </div>
+    <h1>Hello world</h1>
   )
 }
