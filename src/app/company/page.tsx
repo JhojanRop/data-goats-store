@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function CompanyPage() {
     return (
         <>
@@ -64,50 +66,6 @@ export default function CompanyPage() {
           ))}
         </div>
       </section>
-
-       <footer className="mt-16 py-12 bg-white border-t border-gray-300">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
-          <div>
-            <h3 className="text-lg font-semibold text-gold-600 mb-4">Navigation</h3>
-            <ul className="space-y-2 text-gray-700">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Products</a></li>
-              <li><a href="#">Features</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gold-600 mb-4">Contact With Us</h3>
-            <ul className="space-y-2 text-gray-700">
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gold-600 mb-4">Support</h3>
-            <ul className="space-y-2 text-gray-700">
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">FAQs</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gold-600 mb-4">Account</h3>
-            <ul className="space-y-2 text-gray-700">
-              <li><a href="#">My Account</a></li>
-              <li><a href="#">Order History</a></li>
-              <li><a href="#">Wishlist</a></li>
-              <li><a href="#">Newsletter</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="text-center text-gray-500 text-sm mt-12">&copy; {new Date().getFullYear()} DataGoats Store. All rights reserved.</div>
-      </footer>
-                
-
         </>
     )
 }
