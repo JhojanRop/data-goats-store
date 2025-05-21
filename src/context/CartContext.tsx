@@ -10,6 +10,8 @@ type State = {
 type Action =
   | { type: "ADD_TO_CART"; product: Product }
   | { type: "REMOVE_FROM_CART"; id: number }
+  | { type: "INCREASE_QUANTITY"; id: number }
+  | { type: "DECREASE_QUANTITY"; id: number }
   | { type: "CLEAR_CART" };
 
 const initialState: State = {
@@ -19,12 +21,16 @@ const initialState: State = {
 function cartReducer(state: State, action: Action): State {
   switch (action.type) {
     case "ADD_TO_CART":
-      const existingItem = state.cart.find(item => item.id === action.product.id);
+      const existingItem = state.cart.find(
+        (item) => item.id === action.product.id
+      );
       if (existingItem) {
         return {
           ...state,
-          cart: state.cart.map(item =>
-            item.id === action.product.id ? { ...item, quantity: item.quantity + 1 } : item
+          cart: state.cart.map((item) =>
+            item.id === action.product.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
           ),
         };
       }
@@ -35,19 +41,43 @@ function cartReducer(state: State, action: Action): State {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter(item => item.id !== action.id),
+        cart: state.cart.filter((item) => item.id !== action.id),
+      };
+    case "INCREASE_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
+    case "DECREASE_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        ),
       };
     case "CLEAR_CART":
-      return initialState;
+      return {
+        ...state,
+        cart: [],
+      };
     default:
       return state;
   }
 }
 
-const CartContext = createContext<{
-  state: State;
-  dispatch: React.Dispatch<Action>;
-} | undefined>(undefined);
+const CartContext = createContext<
+  | {
+      state: State;
+      dispatch: React.Dispatch<Action>;
+    }
+  | undefined
+>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
