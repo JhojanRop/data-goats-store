@@ -1,22 +1,28 @@
-'use client'
-import { useState } from 'react'
-import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useCart } from '@/context/CartContext'
+"use client";
+import { useState } from "react";
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
+import {
+  Bars3Icon,
+  MagnifyingGlassIcon,
+  ShoppingBagIcon,
+  UserIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import Link from "next/link";
+import Image from "next/image";
+import { useCart } from "@/context/CartContext";
 
 const navigation = {
   pages: [
-    { name: 'Company', href: '/company' },
-    { name: 'Store', href: '/store' },
+    { name: "Company", href: "/company" },
+    { name: "Store", href: "/store" },
   ],
-}
+};
 
 export default function Header() {
-  const [open, setOpen] = useState(false)
-  const { state } = useCart()
-  const cartCount = state.cart.reduce((acc, item) => acc + item.quantity, 0)
+  const [open, setOpen] = useState(false);
+  const { state } = useCart();
+  const cartCount = state.cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <>
@@ -46,7 +52,10 @@ export default function Header() {
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
               {navigation.pages.map((page) => (
                 <div key={page.name} className="flow-root">
-                  <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
+                  <a
+                    href={page.href}
+                    className="-m-2 block p-2 font-medium text-gray-900"
+                  >
                     {page.name}
                   </a>
                 </div>
@@ -56,8 +65,11 @@ export default function Header() {
         </div>
       </Dialog>
 
-      <header className="relative bg-white">
-        <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <header className="w-full z-20 fixed top-0 bg-white">
+        <nav
+          aria-label="Top"
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+        >
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center justify-between">
               <div className="flex flex-1 items-center lg:hidden">
@@ -70,7 +82,10 @@ export default function Header() {
                   <Bars3Icon aria-hidden="true" className="size-6" />
                 </button>
 
-                <Link href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
+                <Link
+                  href="#"
+                  className="ml-2 p-2 text-gray-400 hover:text-gray-500"
+                >
                   <span className="sr-only">Search</span>
                   <MagnifyingGlassIcon aria-hidden="true" className="size-6" />
                 </Link>
@@ -94,35 +109,41 @@ export default function Header() {
               {/* Logo */}
               <Link href="/" className="flex">
                 <span className="sr-only">Data Goats store</span>
-                <Image
-                  alt=""
-                  width={32}
-                  height={32}
-                  src="/logo.png"
-                />
+                <Image alt="" width={32} height={32} src="/logo.png" />
               </Link>
 
               <div className="flex flex-1 items-center justify-end">
                 {/* Search */}
-                <Link href="#" className="ml-6 hidden p-2 text-gray-400 hover:text-gray-500 lg:block">
+                <Link
+                  href="#"
+                  className="ml-6 hidden p-2 text-gray-400 hover:text-gray-500 lg:block"
+                >
                   <span className="sr-only">Search</span>
                   <MagnifyingGlassIcon aria-hidden="true" className="size-6" />
                 </Link>
 
                 {/* Account */}
-                <Link href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:ml-4">
+                <Link
+                  href="#"
+                  className="p-2 text-gray-400 hover:text-gray-500 lg:ml-4"
+                >
                   <span className="sr-only">Account</span>
                   <UserIcon aria-hidden="true" className="size-6" />
                 </Link>
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <Link href="/cart" className="group -m-2 flex items-center p-2">
+                  <Link
+                    href="/cart"
+                    className="group -m-2 flex items-center p-2"
+                  >
                     <ShoppingBagIcon
                       aria-hidden="true"
                       className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{cartCount}</span>
+                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                      {cartCount}
+                    </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Link>
                 </div>
@@ -132,5 +153,5 @@ export default function Header() {
         </nav>
       </header>
     </>
-  )
+  );
 }
